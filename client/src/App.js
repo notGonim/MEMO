@@ -4,16 +4,25 @@ import { Form } from './components/form/Form';
 import { Posts } from './components/posts/Posts';
 import memo from "./utils/img/memories.jpg"
 import useStyle from './Styles'
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { getPost } from './reducers/posts/posts-actions';
 
 function App() {
 
   const classes = useStyle()
+  const dispatch = useDispatch()
+
+
+  useEffect(() => {
+    dispatch(getPost())
+  }, [dispatch])
 
   return (
     <Container maxWidth="lg">
       <AppBar position="static" color="inherit" className={classes.appBar} >
         <Typography variant="h2" align="center" className={classes.heading} >Memories</Typography>
-        <img src={memo} alt="memmo icon" height="60" className={classes.image} />
+        <img src={memo} alt="memmo icon" height="50" className={classes.image} />
       </AppBar>
       <Grow in>
         <Container >
