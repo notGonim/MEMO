@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { AppBar, Grid, Grow, Typography } from '@material-ui/core';
+import Container from '@material-ui/core/Container';
+import { Form } from './components/form/Form';
+import { Posts } from './components/posts/Posts';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container maxWidth="lg">
+      <AppBar position="static" color="inherit" >
+        <Typography variant="h2" align="center"  >Memories</Typography>
+      </AppBar>
+      <Grow in>
+        <Container >
+          <Grid container alignItems="stretch" spacing={4} justify="space-between" >
+            <Grid item xs={12} sm={7} >
+              <Posts />
+            </Grid>
+            <Grid item xs={12} sm={4} >
+              <Form />
+            </Grid>
+          </Grid>
+        </Container>
+      </Grow>
+    </Container>
+
+
   );
 }
 
