@@ -5,11 +5,16 @@ import mongoose from "mongoose"
 import dotEnv from 'dotenv'
 
 
+import postRoutes from "./routes/post.js"
+
 
 dotEnv.config()
 
 
 const app = express()
+
+//handle post routes
+app.use('/posts', postRoutes)
 
 
 // setting up the body parser so it can properly sending our request
