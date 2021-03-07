@@ -14,7 +14,6 @@ dotEnv.config()
 const app = express()
 
 //handle post routes
-app.use('/posts', postRoutes)
 
 
 // setting up the body parser so it can properly sending our request
@@ -22,6 +21,9 @@ app.use(bodyParser.json({ limit: "30mb", extended: true }))
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }))
 
 app.use(cors())
+
+app.use('/posts', postRoutes)
+
 
 const PORT = process.env.PORT || 5000
 
