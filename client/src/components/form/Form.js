@@ -3,7 +3,7 @@ import useStyle from './Styles'
 import { TextField, Button, Typography, Paper } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import FileBase from 'react-file-base64';
-import { createPost } from '../../reducers/posts/posts-actions';
+import { createPost, updatePost } from '../../reducers/posts/posts-actions';
 
 
 
@@ -29,12 +29,15 @@ export const Form = ({ currentId, setCurrentId }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-       
+        if (currentId === 0) {
             dispatch(createPost(postData));
             setCurrentId(0);
             setPostData({ creator: '', title: '', message: '', tags: '', selectedFile: '' });
-
-       
+        } else {
+            dispatch(updatePost(currentId, postData));
+            setCurrentId(0);
+            setPostData({ creator: '', title: '', message: '', tags: '', selectedFile: '' });
+        }
     };
 
     return (

@@ -4,7 +4,7 @@ import { Form } from './components/form/Form';
 import { Posts } from './components/posts/Posts';
 import memo from "./utils/img/memories.jpg"
 import useStyle from './Styles'
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { getPost } from './reducers/posts/posts-actions';
 
@@ -12,11 +12,11 @@ function App() {
 
   const classes = useStyle()
   const dispatch = useDispatch()
-
+  const [currentId, setCurrentId] = useState(null)
 
   useEffect(() => {
     dispatch(getPost())
-  }, [dispatch])
+  }, [currentId,dispatch])
 
   return (
     <Container maxWidth="lg">
@@ -28,10 +28,10 @@ function App() {
         <Container >
           <Grid container alignItems="stretch" spacing={4} justify="space-between" >
             <Grid item xs={12} sm={7} >
-              <Posts />
+              <Posts setCurrentId={setCurrentId} />
             </Grid>
             <Grid item xs={12} sm={4} >
-              <Form />
+              <Form currentId={currentId} />
             </Grid>
           </Grid>
         </Container>

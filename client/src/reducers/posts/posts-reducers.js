@@ -16,6 +16,8 @@ const postReducer = (state = INITIAL_STATE, actions) => {
                 ...state,
                 posts: actions.payLoad.posts
             };
+        case 'UPDATE':
+            return state.map(post => post._id === actions.payLoad._id ? actions.payLoad : post)
         default:
             return state;
     }
