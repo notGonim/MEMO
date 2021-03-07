@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core";
 export default makeStyles(() => ({
     appBar: {
         borderRadius: 10,
-        margin: '0',
+        margin: '10px 10px',
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'center',
