@@ -3,6 +3,7 @@ import useStyle from './Styles'
 import { TextField, Button, Typography, Paper } from '@material-ui/core';
 import { useDispatch, useSelector } from 'react-redux';
 import FileBase from 'react-file-base64';
+import { createPost } from '../../reducers/posts/posts-actions';
 
 
 
@@ -10,10 +11,13 @@ export const Form = ({ currentId, setCurrentId }) => {
     const classes = useStyle()
     const [postData, setPostData] = useState({ creator: '', title: '', message: '', tags: '', selectedFile: '' });
     const post = useSelector((state) => (currentId ? state.posts.find((message) => message._id === currentId) : null));
+    const dispatch = useDispatch();
+
 
     useEffect(() => {
         if (post) setPostData(post);
     }, [post]);
+
 
     const clear = () => {
         setCurrentId(0);
@@ -21,9 +25,16 @@ export const Form = ({ currentId, setCurrentId }) => {
     };
 
 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+       
+            dispatch(createPost(postData));
+            setCurrentId(0);
+            setPostData({ creator: '', title: '', message: '', tags: '', selectedFile: '' });
+
+       
     };
 
     return (

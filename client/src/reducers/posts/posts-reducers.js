@@ -12,7 +12,10 @@ const postReducer = (state = INITIAL_STATE, actions) => {
                 posts: actions.payLoad.posts
             };
         case 'CREATE':
-            return state;
+            return {
+                ...state,
+                posts: actions.payLoad.posts
+            };
         default:
             return state;
     }
